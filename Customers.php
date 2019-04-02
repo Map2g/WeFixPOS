@@ -23,25 +23,25 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="pages/index.html">WeFix</a>
+      <a class="navbar-brand" href="index.html">WeFix</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="pages/index.html">Home
+            <a class="nav-link" href="index.html">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/Customers.php">Customers</a>
+            <a class="nav-link" href="Customers.php">Customers</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/Employees.php">Employees</a>
+            <a class="nav-link" href="Employees.php">Employees</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/Inventory.php">Inventory</a>
+            <a class="nav-link" href="Inventory.php">Inventory</a>
           </li>
         </ul>
       </div>
@@ -58,17 +58,19 @@
           </div> 
             
             <div class="col-5">
-                <input type="text" name="cusSearch" class="form" placeholder="Search">
+              <form action = "Customers.php" method = "post">
+                <input type="search" name="cusSearch" placeholder="Search"><input type = "submit" value = "Search">
+              </form>
             </div>
             
             <div class="col-3">
-                <a href = "pages/AddCus.html"><button type="button">&plus; Customer</button></a>
+                <a href = "AddCus.html"><button type="button">&plus; Customer</button></a>
             </div>
             
         </div>
        
-      <div class="row">
-        <div class="col-lg-9">
+      <div class="row align-items-center">
+        <!--<div class="col-lg-9">-->
           
           <table class="table">
               <thead>
@@ -84,13 +86,13 @@
               <tbody>
                   
                   
-                <?php include 'queries/CusList.php'; ?>
+                <?php include 'CusList.php'; ?>
            
             
             </tbody>
           </table>
   
-        </div> 
+        <!--</div> -->
         <!--/col-lg-9-->
       </div>
       <!--/row-->

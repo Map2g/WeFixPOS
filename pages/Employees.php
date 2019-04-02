@@ -58,7 +58,9 @@
           </div> 
             
             <div class="col-5">
-                <input type="text" name="empSearch" class="form" placeholder="Search">
+              <form action = "Employees.php" method = "post">
+                <input type="search" name="empSearch" placeholder="Search"><input type = "submit" value = "Search">
+              </form>
             </div>
             
             <div class="col-3">

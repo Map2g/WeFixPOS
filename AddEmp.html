@@ -24,18 +24,18 @@
     <div class="card card-register mx-auto mt-5">
       <div class="card-header">Add a new employee</div>
       <div class="card-body">
-        <form action = "queries/AddEmp.php" method = "post">
+        <form action = "AddEmp.php" method = "post">
           
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
-                  First name: <input type="text" name="fname" class="form-control" placeholder="Name" required="required">
+                  First name: <input type="text" name="fname" class="form-control" placeholder="Jack" required="required">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
-                  Last name: <input type="text" name="lname" class="form-control" placeholder="Name" required="required">
+                  Last name: <input type="text" name="lname" class="form-control" placeholder="Smith" required="required">
                   <!--<input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">-->
                   <!--<label for="lastName">Last name</label>-->
                 </div>
@@ -45,11 +45,6 @@
           
           <div class="form-group">
             <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                  Email: <input type="text" name="email" class="form-control" placeholder="name@email.com" required="required">
-                </div>
-              </div>
               <div class="col-md-6">
                 <div class="form-label-group">
                   Phone number: <input type="tel" name="phone" class="form-control" placeholder="12481234567" required="required">
@@ -57,11 +52,16 @@
                   <!--<label for="lastName">Last name</label>-->
                 </div>
               </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  Email: <input type="text" name="email" class="form-control" placeholder="jacksmith@yahoo.com" required="required">
+                </div>
+              </div>
             </div>
           </div>
           
-          <a href = "pages/index.html"><button type="button">Cancel</button></a>
-          <input type = "submit" value = "Next">
+          <a href = "Employees.php"><button type="button">Cancel</button></a>
+          <input type = "submit" value = "Submit">
           <!--<a class="btn btn-primary btn-block" href="login.html">Register</a>-->
         </form>
         <!--<div class="text-center">-->

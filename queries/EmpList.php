@@ -2,7 +2,7 @@
 
 include 'config.php';
 
-$AllEmployee = "SELECT * FROM EMPLOYEE";
+$AllEmployee = "SELECT * FROM EMPLOYEE ORDER BY EMP_LNAME ASC";
 $AllEmpResult = mysqli_query($conn, $AllEmployee);
 
 //Error message if query doesn't work

@@ -95,8 +95,14 @@ $Ephone = $row["EMP_PHONE"];
           </div>
           
           <a href = "Employees.php"><button type="button">Cancel</button></a>
-          <input type = "submit" value = "Next">
+          <input type = "submit" value = "Submit">
           <!--<a class="btn btn-primary btn-block" href="login.html">Register</a>-->
+        </form>
+        
+        <form action = "DeleteEmp.php" method = "post">
+            <input type="hidden" name="id" value="<?php echo $employeeID; ?>">
+            <br>
+            <center><input type = "submit" value = "Delete"></center>
         </form>
         <!--<div class="text-center">-->
         <!--  <a class="d-block small mt-3" href="login.html">Login Page</a>-->

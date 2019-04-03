@@ -26,9 +26,9 @@ if ($prodDetails == false ) {
 
 $row = mysqli_fetch_assoc($prodDetails);
 
-$name = $row["PROD_NAME"];
+$name = mysql_real_escape_string(htmlspecialchars($row["PROD_NAME"]));
 $price = $row["PROD_PRICE"];
-$desc = mysql_real_escape_string(htmlspecialchars($row["PROD_DESC"]));
+$retail = $row["PROD_RETAIL"];
 $stock = $row["PROD_STOCK"];
 
 ?>
@@ -69,7 +69,7 @@ $stock = $row["PROD_STOCK"];
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
-                  Price: <input type="number" name="price" <input type="number" value="<?php echo $price; ?>" min="0" step="any" class="form-control" required="required">
+                  Number in stock: <input type="number" name="stock" class="form-control" value="<?php echo $stock; ?>" required="required">
                   <!--<input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">-->
                   <!--<label for="lastName">Last name</label>-->
                 </div>
@@ -81,12 +81,12 @@ $stock = $row["PROD_STOCK"];
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
-                  Number in stock: <input type="number" name="stock" class="form-control" value="<?php echo $stock; ?>" required="required">
+                  Price: <input type="number" name="price" value="<?php echo $price; ?>" min="0" step="any" class="form-control" required="required">
                 </div>
               </div>
               <div class="col-md-6">
-                <div class="form-group">
-                  Description: <input type="text" name="desc" class="form-control" required="required" value="<?php echo $desc; ?>">
+                <div class="form-label-group">
+                  Retail price: <input type="number" name="retail" class="form-control" required="required" value="<?php echo $retail; ?>" min="0" step="any">
                   <!--<input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">-->
                   <!--<label for="lastName">Last name</label>-->
                 </div>
@@ -95,9 +95,14 @@ $stock = $row["PROD_STOCK"];
           </div>
           
           <a href = "Inventory.php"><button type="button">Cancel</button></a>
-          <input type = "submit" value = "Save and continue">
-          <input type = "submit" value = "Save and exit">
+          <input type = "submit" value = "Submit">
           <!--<a class="btn btn-primary btn-block" href="login.html">Register</a>-->
+        </form>
+        
+        <form action = "DeleteProd.php" method = "post">
+            <input type="hidden" name="id" value="<?php echo $productID; ?>">
+            <br>
+            <center><input type = "submit" value = "Delete"></center>
         </form>
         <!--<div class="text-center">-->
         <!--  <a class="d-block small mt-3" href="login.html">Login Page</a>-->

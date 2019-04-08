@@ -16,7 +16,7 @@ if ($deviceDetails == false){
   printf("Connection error: %s\nQuery error: %s\n", mysqli_error($conn), $deviceSql); 
 }
 
-//displaying purchase details
+//displaying device details
 $CountD = 1;
 
 if ($dropdown != true){
@@ -43,10 +43,14 @@ if ($dropdown != true){
 
 //Get individual device list in dropdown format    
 } else {
-    $rowD = mysqli_fetch_assoc($deviceDetails);
-    while($rowD){
-        echo '<option value="'. $rowD["DEV_ID"] .'">' . $rowD["DEV_MODEL"] . " " . $rowD["DEV_PHONE"] . '</option>';
+    if (mysqli_num_rows($deviceDetails) > 0) {
         $rowD = mysqli_fetch_assoc($deviceDetails);
+        while($rowD){
+            echo '<option value="'. $rowD["DEV_ID"] .'">' . $rowD["DEV_MODEL"] . " " . $rowD["DEV_PHONE"] . '</option>';
+            $rowD = mysqli_fetch_assoc($deviceDetails);
+        }
+    } else {
+        echo '<option value="">--No devices registered--</option>';
     }
 }
 

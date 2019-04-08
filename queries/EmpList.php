@@ -28,30 +28,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 
 
-
-$Count = 1;
-
-if (mysqli_num_rows($thisQuery) > 0) {
-    $row = mysqli_fetch_assoc($thisQuery);
-    while($row) {
-        echo '  <tr>
-                  <th scope="row">' . $Count . '</th>
-                  <td>' . $row["EMP_FNAME"] . '</td>
-                  <td>' . $row["EMP_LNAME"] . '</td>
-                  <td>' . $row["EMP_EMAIL"] . '</td>
-                  <td>' . $row["EMP_PHONE"] . '</td>
-                  <td>' . $row["EMP_ID"] . '</td>
-                  <td>        
-                      <a href="EditEmp.php?id=' . $row["EMP_ID"] . '" style="text-decoration:none">
-                          <span class="glyphicon">&#x270f;</span>
-                      </a>
-                  </td>
-                </tr>';
-        $Count = $Count + 1;
+if ($dropdown != true){
+    $Count = 1;
+    
+    if (mysqli_num_rows($thisQuery) > 0) {
         $row = mysqli_fetch_assoc($thisQuery);
+        while($row) {
+            echo '  <tr>
+                      <th scope="row">' . $Count . '</th>
+                      <td>' . $row["EMP_FNAME"] . '</td>
+                      <td>' . $row["EMP_LNAME"] . '</td>
+                      <td>' . $row["EMP_EMAIL"] . '</td>
+                      <td>' . $row["EMP_PHONE"] . '</td>
+                      <td>' . $row["EMP_ID"] . '</td>
+                      <td>        
+                          <a href="EditEmp.php?id=' . $row["EMP_ID"] . '" style="text-decoration:none">
+                              <span class="glyphicon">&#x270f;</span>
+                          </a>
+                      </td>
+                    </tr>';
+            $Count = $Count + 1;
+            $row = mysqli_fetch_assoc($thisQuery);
+        }
+    } else {
+        echo "<tr> No employees to display.</tr>";
     }
 } else {
-    echo "<tr> No employees to display.</tr>";
+    $row = mysqli_fetch_assoc($thisQuery);
+    while($row){
+        echo '<option value="'. $row["EMP_ID"] .'">' . $row["EMP_FNAME"] . ' ' . $row["EMP_LNAME"] . '</option>';
+        $row = mysqli_fetch_assoc($thisQuery);
+    }
 }
 mysqli_close($conn);
 

@@ -65,7 +65,7 @@ if(isset($_GET['id'])){
                 <div class="form-group">
                   Item List: <!--<textarea class="form-control" placeholder="No parts added yet." required="required">-->
                                 <ul class="list-group">
-                                  <?php $purchase =  false; include 'PartList.php'; ?>
+                                  <?php $purchase = false; include 'PartList.php'; ?>
                                 </ul>
                              <!--</textarea>-->
                 </div>

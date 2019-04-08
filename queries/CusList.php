@@ -56,10 +56,14 @@ if ($dropdown != true){
 } else {
     $row = mysqli_fetch_assoc($thisQuery);
     while($row){
-        echo '<option value="'. $row["CUS_ID"] .'">' . $row["CUS_FNAME"] . ' ' . $row["CUS_LNAME"] . '</option>';
+        if ($customerID == $row["CUS_ID"])
+            echo '<option value="'. $row["CUS_ID"] .'" selected="selected">' . $row["CUS_FNAME"] . ' ' . $row["CUS_LNAME"] . '</option>';
+        else
+            echo '<option value="'. $row["CUS_ID"] .'">' . $row["CUS_FNAME"] . ' ' . $row["CUS_LNAME"] . '</option>';
         $row = mysqli_fetch_assoc($thisQuery);
     }
 }
+
 mysqli_close($conn);
 
 ?>

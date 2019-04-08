@@ -45,8 +45,11 @@
             <a class="nav-link" href="Inventory.php">Inventory</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="Purchase.php">All Purchases</a>
-          </li>          
+            <a class="nav-link" href="Purchase.php">Purchases</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Repairs.php">Repairs</a>
+          </li> 
         </ul>
       </div>
     </div>

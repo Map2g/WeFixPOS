@@ -1,6 +1,4 @@
 <?php include 'top.php'; session_start();?>
-<!DOCTYPE html>
-<html lang="en">
 
   
   <div class="container">
@@ -13,7 +11,9 @@
           </div> 
             
             <div class="col-5">
-                <input type="text" name="purSearch" class="form" placeholder="Search">
+              <form action = "Purchase.php" method = "post">
+                <input type="search" name="purSearch" placeholder="Search"><input type = "submit" value = "Search">
+              </form>
             </div>
             
             <div class="col-3">
@@ -34,13 +34,13 @@
                   <th scope="col">Employee</th>
                   <th scope="col">Item List</th>
                   <th scope="col">Total Price</th>
-                  <th scope="col"></th>
+                  <th scope="col">Void</th>
                 </tr>
               </thead>
               <tbody>
                   
                   
-                <?php include 'PurList.php'; ?>
+                <?php $all = true; include 'PurList.php'; ?>
            
             
             </tbody>
@@ -55,12 +55,12 @@
   <!--/.container-->
   
   <!-- Footer -->
-  <footer class="py-5 bg-dark sticky">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; WeFix 2019</p>
-    </div>
+  <!--<footer class="py-5 bg-dark sticky">-->
+  <!--  <div class="container">-->
+  <!--    <p class="m-0 text-center text-white">Copyright &copy; WeFix 2019</p>-->
+  <!--  </div>-->
     <!-- /.container -->
-  </footer>
+  <!--</footer>-->
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

@@ -19,7 +19,7 @@ if ($RepProdResult == false || $PurProdResult == false) {
   printf("Query error: %s\n", mysqli_error($conn));
 }
 
-if ($purchase = true){
+if ($purchase == true){
     $query = $PurProdResult;
 } else {
     $query = $RepProdResult;

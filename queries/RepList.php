@@ -15,24 +15,43 @@ $repairSql = "SELECT
                 JOIN REPAIR ON DEVICE.DEV_ID = REPAIR.DEV_ID 
                  JOIN EMPLOYEE ON REPAIR.EMP_ID = EMPLOYEE.EMP_ID
             WHERE CUSTOMER.CUS_ID = '$customerID'
-            ORDER BY REP_DATE";
+            ORDER BY REP_DATE DESC";
             
             //JOIN REPAIR_INVOICE ON REPAIR.REP_ID = REPAIR_INVOICE.REP_ID
             
+$repairSqlAll = "SELECT 
+                REP_ID,
+                CUS_FNAME,
+                CUS_LNAME,
+                EMP_FNAME,
+                EMP_LNAME,
+                REP_DATE, 
+                REP_LOCKRNO, 
+                REP_DESC
+            FROM CUSTOMER JOIN DEVICE ON CUSTOMER.CUS_ID = DEVICE.CUS_ID 
+                JOIN REPAIR ON DEVICE.DEV_ID = REPAIR.DEV_ID 
+                 JOIN EMPLOYEE ON REPAIR.EMP_ID = EMPLOYEE.EMP_ID
+            ORDER BY REP_DATE DESC";
+            
 $repairDetails = mysqli_query($conn, $repairSql);
+$repairDetailsAll = mysqli_query($conn, $repairSqlAll);
 
 //Error message if query doesn't work
-if ($repairDetails == false ) {
+if ($repairDetails == false || $repairDetailsAll == false) {
   printf("Connection error: %s\nQuery error: %s\n", mysqli_error($conn), $repairSql);
 }
 
-$RepTotPrice = 0.00; //placeholder for now. Need to calcualate from prod price, prod quantity
+if ($all == true){
+    $thisQuery = $repairDetailsAll;
+} else{
+    $thisQuery = $repairDetails;
+}
 
 //Displaying repair query results
 $CountR = 1;
 
-if (mysqli_num_rows($repairDetails) > 0) {
-    $rowR = mysqli_fetch_assoc($repairDetails);
+if (mysqli_num_rows($thisQuery) > 0) {
+    $rowR = mysqli_fetch_assoc($thisQuery);
     while($rowR) {
         $RepTotPrice = 0.00;
         $rItemList = "";
@@ -52,13 +71,29 @@ if (mysqli_num_rows($repairDetails) > 0) {
         $rowRepPrice = mysqli_fetch_assoc($repPriceResult);
         
         while($rowRepPrice){
-            $rItemList = $rItemList . $rowRepPrice["PROD_NAME"] . " x" . $rowRepPrice["PROD_QUANTITY"] . ", ";
+            $rItemList = $rItemList . $rowRepPrice["PROD_NAME"] . " x" . $rowRepPrice["PROD_QUANTITY"] . "<br>";
             $RepTotPrice = $RepTotPrice + ($rowRepPrice["PROD_PRICE"] * $rowRepPrice["PROD_QUANTITY"]);
             $rowRepPrice = mysqli_fetch_assoc($repPriceResult);
         }
         
-        
-        echo '
+        if ($all == true){
+                    echo '
+                    <tr>
+                      <th scope="row">' . $CountR . '</th>
+                      <td>' . $rowR["REP_DATE"] . '</td>
+                      <td>' . $rowR["CUS_FNAME"] . ' ' . $rowR["CUS_LNAME"] . '</td>
+                      <td>' . $rowR["EMP_FNAME"] . ' ' . $rowR["EMP_LNAME"] . '</td>
+                      <td>' . $rowR["REP_LOCKRNO"] . '</td>
+                      <td>' . $rowR["REP_DESC"] . '</td>
+                      <td>$' . $RepTotPrice . '</td>
+                      <td>
+                          <a href="DeleteRep.php?id=' . $rowR["REP_ID"] . '" style="text-decoration:none">
+                              <span class="glyphicon">&#x274C;</span>
+                          </a>
+                      </td>
+                    </tr>';
+        } else {
+                    echo '
                     <tr>
                       <th scope="row">' . $CountR . '</th>
                       <td>' . $rowR["REP_DATE"] . '</td>
@@ -68,14 +103,15 @@ if (mysqli_num_rows($repairDetails) > 0) {
                       <td>' . $rowR["REP_LOCKRNO"] . '</td>
                       <td>' . $rowR["REP_DESC"] . '</td>
                       <td>$' . $RepTotPrice . '</td>
-                      <td>        
-                          <a href="EditEmp.php?id=' . $rowR["REP_ID"] . '" style="text-decoration:none">
-                              <span class="glyphicon">&#x270f; do not click</span>
+                      <td>
+                          <a href="DeleteRep.php?id=' . $rowR["REP_ID"] . '" style="text-decoration:none">
+                              <span class="glyphicon">&#x274C;</span>
                           </a>
                       </td>
                     </tr>';
+        }
         $CountR = $CountR + 1;
-        $rowR = mysqli_fetch_assoc($repairDetails);
+        $rowR = mysqli_fetch_assoc($thisQuery);
     }
 } else {
     echo '<tr> No existing repairs to display.</tr>';

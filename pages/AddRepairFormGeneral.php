@@ -5,8 +5,6 @@ session_start();
 
 if(isset($_GET['id'])){
   $customerID = $_GET['id'];
-} else {
-  echo "Could not get ID";
 }
 
 ?>
@@ -37,14 +35,21 @@ if(isset($_GET['id'])){
     <div class="card card-register mx-auto mt-5">
       <div class="card-header">New Repair Ticket</div>
       <div class="card-body">
-        <form action = "AddRepair.php" method = "post">
+        <!--<form action = "AddRepair.php" method = "post">-->
           
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
-                <div class="form-label-group">
-                  Customer ID: <input type="text" name="cusID" class="form-control" value="<?php echo $customerID; ?>" required="required" readonly>
-                </div>
+                
+               <form action="AddRepair.php" method="post">
+                Customer: 
+                <select name="cusID" class="form-control" required="required" onchange="this.form.submit()">
+                  <option value="">--No option selected--</option>
+                  <?php $dropdown = true; include 'CusList.php'; ?>
+                </select>
+                </form>
+                
+            <form action = "AddRepair.php" method = "post">
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
@@ -80,9 +85,15 @@ if(isset($_GET['id'])){
             </div>
           </div>
           
-          <a href = "index.php"><button type="button">Cancel</button></a>          
+          <a href = "index.php"><button type="button">Exit</button></a>          
+          <!--<input type = "submit" value = "Save and continue">-->
           <input type = "submit" value = "Save and add parts">
+          <!--<a class="btn btn-primary btn-block" href="login.html">Register</a>-->
         </form>
+        <!--<div class="text-center">-->
+        <!--  <a class="d-block small mt-3" href="login.html">Login Page</a>-->
+        <!--  <a class="d-block small" href="forgot-password.html">Forgot Password?</a>-->
+        <!--</div>-->
       </div>
     </div>
   </div>

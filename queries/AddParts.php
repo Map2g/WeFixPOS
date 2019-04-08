@@ -10,9 +10,9 @@ $prodID = $_POST['prodID'];
 $prodQuantity = $_POST['pQuantity'];
 
 //get product price from prodID
-$getPrice = "SELECT PROD_PRICE FROM PRODUCT WHERE PROD_ID = '". $prodID . "'";
+$getPrice = "SELECT PROD_RETAIL FROM PRODUCT WHERE PROD_ID = '". $prodID . "'";     //RETAIL is what customer pays.
 $getPriceRow = mysqli_fetch_assoc(mysqli_query($conn, $getPrice));
-$prodPrice = $getPriceRow["PROD_PRICE"];
+$prodPrice = $getPriceRow["PROD_RETAIL"];
 
 $purchase = $_POST['purchase'];
 

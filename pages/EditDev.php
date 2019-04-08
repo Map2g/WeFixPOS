@@ -73,11 +73,11 @@ $phone = $row["DEV_PHONE"];
           <!--<a class="btn btn-primary btn-block" href="login.html">Register</a>-->
         </form>
         
-        <form action = "DeleteDev.php" method = "post">
-            <input type="hidden" name="id" value="<?php echo $deviceID; ?>">
-            <br>
-            <center><input type = "submit" value = "Delete"></center>
-        </form>
+        <!--<form action = "DeleteDev.php" method = "post">-->
+        <!--    <input type="hidden" name="id" value="<?php echo $deviceID; ?>">-->
+        <!--    <br>-->
+        <!--    <center><input type = "submit" value = "Delete"></center>-->
+        <!--</form>-->
 
       </div>
     </div>

@@ -45,7 +45,7 @@ $purchase = true;     //this is a purchase
             <div class="form-row">
               <div class="col-md-6">
                 Customer: 
-                <select name="cusID" class="form-control">
+                <select name="cusID" class="form-control" required="required" <?php if(isset($_GET['pid'])){ echo "readonly"; } ?>>
                   <?php $dropdown = true; include 'CusList.php'; ?>
                 </select>
                 
@@ -55,9 +55,10 @@ $purchase = true;     //this is a purchase
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
-                  Employee ID: <input type="text" name="EmpID" class="form-control form-control-lg" placeholder="ID of employee who conducted repair" required="required">
-                  <!--<input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">-->
-                  <!--<label for="lastName">Last name</label>-->
+                  Employee:
+                  <select name="EmpID" class="form-control" required="required" <?php if(isset($_GET['pid'])){ echo "readonly"; } ?>>
+                    <?php $dropdown = true; include 'EmpList.php'; ?>
+                  </select>
                 </div>
               </div>
             </div>
@@ -110,7 +111,7 @@ $purchase = true;     //this is a purchase
             </div>
           </div>
           <hr>
-          <center><a href = "Customers.php"><button type="button">Cancel</button></a></center>
+          <center><a href = "Purchase.php"><button type="button">Finish</button></a></center>
       </div>
     </div>
   </div>

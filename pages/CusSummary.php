@@ -31,11 +31,11 @@ if(isset($_GET['id'])){
                       <th scope="col">Locker No.</th>
                       <th scope="col">Description</th>
                       <th scope="col">Price</th>
-                      <th scope="col"></th>
+                      <!--<th scope="col"></th>-->
                     </tr>
                 </thead>
                 <tbody>
-                    <?php include 'IndividualRepList.php'; ?>
+                    <?php include 'RepList.php'; ?>
                 </tbody>
               </table>
             <!--</div>-->
@@ -54,13 +54,13 @@ if(isset($_GET['id'])){
                       <th scope="col">#</th>
                       <th scope="col">Date</th>
                       <th scope="col">Employee</th>
-                      <th scope="col">Items bought</th>
+                      <th scope="col">Item List</th>
                       <th scope="col">Price</th>
-                      <th scope="col"></th>
+                      <!--<th scope="col"></th>-->
                     </tr>
                 </thead>
                 <tbody>
-                    <?php include 'IndividualPurList.php' ?>
+                    <?php include 'PurList.php' ?>
                 </tbody>
                </table>
             <!--</div>-->
@@ -106,12 +106,12 @@ if(isset($_GET['id'])){
     <!--./container-->
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark sticky">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; WeFix 2019</p>
-    </div>
+  <!--<footer class="py-5 bg-dark sticky">-->
+  <!--  <div class="container">-->
+  <!--    <p class="m-0 text-center text-white">Copyright &copy; WeFix 2019</p>-->
+  <!--  </div>-->
     <!-- /.container -->
-  </footer>
+  <!--</footer>-->
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

@@ -57,7 +57,9 @@ if ($dropdown != true){
 } else {
     $row = mysqli_fetch_assoc($thisQuery);
     while($row){
-        echo '<option value="'. $row["PROD_ID"] .'">' . $row["PROD_NAME"] . '</option>';
+        if ($row["PROD_STOCK"] != 0){   //Item will not display as purchasable when the stock is 0.
+            echo '<option value="'. $row["PROD_ID"] .'">' . $row["PROD_NAME"] . '</option>';
+        }
         $row = mysqli_fetch_assoc($thisQuery);
     }
 }

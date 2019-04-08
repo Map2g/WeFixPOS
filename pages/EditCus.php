@@ -18,12 +18,6 @@ if ($cusDetails == false ) {
   printf("Query error: %s\n%s", mysqli_error($conn), $sql);
 }
 
-// if (mysqli_num_rows($cusDetails) == 1){
-//     printf("Yay!");
-// } else {
-//     printf("%s\n%s", $sql, $_GET["id"]);
-// }
-
 $row = mysqli_fetch_assoc($cusDetails);
 
 $fname = $row["CUS_FNAME"];
@@ -70,8 +64,6 @@ $Ephone = $row["CUS_PHONE"];
               <div class="col-md-6">
                 <div class="form-label-group">
                   Last name: <input type="text" name="lname" class="form-control" value="<?php echo $lname; ?>" required="required">
-                  <!--<input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">-->
-                  <!--<label for="lastName">Last name</label>-->
                 </div>
               </div>
             </div>
@@ -82,8 +74,6 @@ $Ephone = $row["CUS_PHONE"];
               <div class="col-md-6">
                 <div class="form-label-group">
                   Phone number: <input type="tel" name="phone" class="form-control" value="<?php echo $Ephone; ?>" required="required">
-                  <!--<input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">-->
-                  <!--<label for="lastName">Last name</label>-->
                 </div>
               </div>
               <div class="col-md-6">
@@ -96,18 +86,16 @@ $Ephone = $row["CUS_PHONE"];
           
           <a href = "Customers.php"><button type="button">Cancel</button></a>
           <input type = "submit" value = "Submit">
-          <!--<a class="btn btn-primary btn-block" href="login.html">Register</a>-->
         </form>
         
-        <form action = "DeleteCus.php" method = "post">
-            <input type="hidden" name="id" value="<?php echo $customerID; ?>">
-            <br>
-            <center><input type = "submit" value = "Delete"></center>
-        </form>
-        <!--<div class="text-center">-->
-        <!--  <a class="d-block small mt-3" href="login.html">Login Page</a>-->
-        <!--  <a class="d-block small" href="forgot-password.html">Forgot Password?</a>-->
-        <!--</div>-->
+        
+        <!--Delete action would cause many referential integrity issues -->
+        
+        <!--<form action = "DeleteCus.php" method = "post">-->
+        <!--    <input type="hidden" name="id" value="<?php echo $customerID; ?>">-->
+        <!--    <br>-->
+        <!--    <center><input type = "submit" value = "Delete"></center>-->
+        <!--</form>-->
       </div>
     </div>
   </div>

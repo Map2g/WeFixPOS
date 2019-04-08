@@ -70,8 +70,6 @@ $Ephone = $row["EMP_PHONE"];
               <div class="col-md-6">
                 <div class="form-label-group">
                   Last name: <input type="text" name="lname" class="form-control" value="<?php echo $lname; ?>" required="required">
-                  <!--<input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">-->
-                  <!--<label for="lastName">Last name</label>-->
                 </div>
               </div>
             </div>
@@ -82,8 +80,6 @@ $Ephone = $row["EMP_PHONE"];
               <div class="col-md-6">
                 <div class="form-label-group">
                   Phone number: <input type="tel" name="phone" class="form-control" value="<?php echo $Ephone; ?>" required="required">
-                  <!--<input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">-->
-                  <!--<label for="lastName">Last name</label>-->
                 </div>
               </div>
               <div class="col-md-6">
@@ -96,18 +92,14 @@ $Ephone = $row["EMP_PHONE"];
           
           <a href = "Employees.php"><button type="button">Cancel</button></a>
           <input type = "submit" value = "Submit">
-          <!--<a class="btn btn-primary btn-block" href="login.html">Register</a>-->
         </form>
         
-        <form action = "DeleteEmp.php" method = "post">
-            <input type="hidden" name="id" value="<?php echo $employeeID; ?>">
-            <br>
-            <center><input type = "submit" value = "Delete"></center>
-        </form>
-        <!--<div class="text-center">-->
-        <!--  <a class="d-block small mt-3" href="login.html">Login Page</a>-->
-        <!--  <a class="d-block small" href="forgot-password.html">Forgot Password?</a>-->
-        <!--</div>-->
+        
+        <!--<form action = "DeleteEmp.php" method = "post">-->
+        <!--    <input type="hidden" name="id" value="<?php echo $employeeID; ?>">-->
+        <!--    <br>-->
+        <!--    <center><input type = "submit" value = "Delete"></center>-->
+        <!--</form>-->
       </div>
     </div>
   </div>

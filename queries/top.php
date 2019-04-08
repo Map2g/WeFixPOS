@@ -24,7 +24,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="index.php">WeFix</a>
-      <a class="navbar-brand">Emp ID: <?php session_start(); echo $_SESSION['EmpID']; ?></a>
+      <h class="navbar-brand" style="color:#FFF; left:30px">Emp ID: <?php session_start(); echo $_SESSION['EmpID']; ?></h>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -45,10 +45,11 @@
             <a class="nav-link" href="Inventory.php">Inventory</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="Purchase.php">Purchase</a>
+            <a class="nav-link" href="Purchase.php">All Purchases</a>
           </li>          
         </ul>
       </div>
     </div>
   </nav>
+  
 <!--</html>-->

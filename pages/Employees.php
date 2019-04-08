@@ -1,5 +1,6 @@
-<?php include ('top.php'); session_start();?>
+<?php include 'top.php'; session_start();?>
 <!DOCTYPE html>
+<html lang="en">
   
   <div class="container">
         
@@ -33,6 +34,7 @@
                   <th scope="col">Last</th>
                   <th scope="col">Email</th>
                   <th scope="col">Phone Number</th>
+                  <th scope="col">Employee ID</th>
                   <th scope="col"></th>
                 </tr>
               </thead>
@@ -54,7 +56,7 @@
   <!--/.container-->
   
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  <footer class="py-5 bg-dark sticky">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; WeFix 2019</p>
     </div>

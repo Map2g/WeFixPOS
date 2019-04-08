@@ -23,7 +23,7 @@ $password = $_POST['EmpPass'];
 
 //*****************************************************************************************************
 
-$sql = "SELECT * FROM EMPLOYEE WHERE EMP_ID = '$employee_ID' and EMP_PASS = '$password'"; //Searching for a matching record in the database
+$sql = "SELECT * FROM EMPLOYEE WHERE EMP_ID = '$employee_ID' AND EMP_PASS = '$password'"; //Searching for a matching record in the database
 $result = mysqli_query($conn, $sql);//result stores the boolean value of the query from the variable sql
 $row = mysqli_fetch_assoc($result);//row stores the value of result 
 $count = mysqli_num_rows($result);//counts the number of rows that match result
@@ -41,10 +41,15 @@ if ($count == 1) {
     // }
 }
 else{ 
-    echo "Incorrect email or password"; 
+    $message = "Incorrect ID or password";
+    echo '<script type="text/javascript">
+    alert("'. $message. '");
+    location="login.html";
+    </script>';
 } 
 
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>

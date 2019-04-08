@@ -1,6 +1,40 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
+    
+<?php
+
+include 'config.php';
+
+if(isset($_GET['id'])){
+  $purchaseID = $_GET['id'];
+} else {
+  echo "Could not get ID";
+}
+
+$sql = "SELECT * FROM PURCHASE_INVOICE WHERE PUR_ID = '" . $customerID . "'";
+$PurDetails = mysqli_query($conn, $sql);
+
+if ($PurDetails == false ) {
+  printf("Query error: %s\n%s", mysqli_error($conn), $sql);
+}
+
+// if (mysqli_num_rows($cusDetails) == 1){
+//     printf("Yay!");
+// } else {
+//     printf("%s\n%s", $sql, $_GET["id"]);
+// }
+$AllPurResult = mysql_query("SELECT SUM(PROD_PRICE) AS 'value_sum' FROM PURCHASE_INVOICE"); 
+$row = mysql_fetch_assoc($AllPurResult); 
+$PurSum = $row['value_sum'];
+
+$row = mysqli_fetch_assoc($cusDetails);
+
+$fname = $PurSum;
+$lname = $row["CUS_LNAME"];
+$Eemail = $row["CUS_EMAIL"];
+$Ephone = $row["CUS_PHONE"];
+
+?>
 
 <head>
 
@@ -10,7 +44,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Add Inventory Item</title>
+  <title>Edit customer</title>
 
   <!-- Custom fonts for this template-->
   <!--<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">-->
@@ -23,20 +57,22 @@
 <body class="bg-light">
   <div class="container">
     <div class="card card-register mx-auto mt-5">
-      <div class="card-header">Add a new Repair</div>
+      <div class="card-header">Edit a customer</div>
       <div class="card-body">
-        <form action = "AddRepair.php" method = "post">
+        <form action = "UpdateCus.php" method = "post">
+            
+        <input type="hidden" name="id" value="<?php echo $customerID; ?>">
           
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
-                  Repair Date: <input type="text" name="rDate" class="form-control" placeholder="yyyy/dd/mm" required="required">
+                  First name: <input type="text" name="fname" class="form-control" value="<?php echo $fname; ?>" required="required">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
-                  Locker Number of the Device: <input type="number" name="rLockrno" <input type="number" value="0.00" min="0" class="form-control" required="required">
+                  Last name: <input type="text" name="lname" class="form-control" value="<?php echo $lname; ?>" required="required">
                   <!--<input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">-->
                   <!--<label for="lastName">Last name</label>-->
                 </div>
@@ -48,23 +84,28 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
-                   ID of the Device: <input type="text" name="DevID" class="form-control" placeholder="Device ID" required="required">
-                </div>
-              </div>
-              <div class="col-md-14">
-                <div class="form-group">
-                  Description: <textarea name="desc" class="form-control" placeholder="A short description of the repair" required="required"></textarea>
+                  Phone number: <input type="tel" name="phone" class="form-control" value="<?php echo $Ephone; ?>" required="required">
                   <!--<input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">-->
                   <!--<label for="lastName">Last name</label>-->
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-label-group">
+                  Email: <input type="text" name="email" class="form-control" value="<?php echo $Eemail; ?>" required="required">
                 </div>
               </div>
             </div>
           </div>
           
-          <a href = "index.php"><button type="button">Cancel</button></a>          
-          <!--<input type = "submit" value = "Save and continue">-->
-          <input type = "submit" value = "Save and exit">
+          <a href = "Customers.php"><button type="button">Cancel</button></a>
+          <input type = "submit" value = "Submit">
           <!--<a class="btn btn-primary btn-block" href="login.html">Register</a>-->
+        </form>
+        
+        <form action = "DeleteCus.php" method = "post">
+            <input type="hidden" name="id" value="<?php echo $customerID; ?>">
+            <br>
+            <center><input type = "submit" value = "Delete"></center>
         </form>
         <!--<div class="text-center">-->
         <!--  <a class="d-block small mt-3" href="login.html">Login Page</a>-->

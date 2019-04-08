@@ -12,7 +12,7 @@ $sql = "UPDATE DEVICE
         WHERE DEV_ID = '$devID'";
 
 if(mysqli_query($conn, $sql)){
-    header("location: CusSummary.php");
+    //header("location: CusSummary.php");
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 }else {
     echo "Error" . $sql . "<br>" . mysqli_error($conn);

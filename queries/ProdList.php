@@ -28,30 +28,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 
 
+if ($dropdown != true){
+    $Count = 1;
+    
+    if (mysqli_num_rows($thisQuery) > 0) {
+        $row = mysqli_fetch_assoc($thisQuery);
+        while($row) {
+            echo '  <tr>
+                      <th scope="row">' . $Count . '</th>
+                      <td>' . $row["PROD_NAME"] . '</td>
+                      <td>$' . $row["PROD_PRICE"] . '</td>
+                      <td>$' . $row["PROD_RETAIL"] . '</td>
+                      <td>' . $row["PROD_STOCK"] . '</td>
+                      <td>        
+                          <a href="EditProd.php?id=' . $row["PROD_ID"] . '" style="text-decoration:none">
+                              <span class="glyphicon">&#x270f;</span>
+                          </a>
+                      </td>
+                    </tr>';
+            $Count = $Count + 1;
+            $row = mysqli_fetch_assoc($thisQuery);
+        }
+    } else {
+        echo "<tr> No products to display.</tr>";
+    }
 
-$Count = 1;
-
-if (mysqli_num_rows($thisQuery) > 0) {
+//DROPDOWN USED IN FORMS
+} else {
     $row = mysqli_fetch_assoc($thisQuery);
-    while($row) {
-        echo '  <tr>
-                  <th scope="row">' . $Count . '</th>
-                  <td>' . $row["PROD_NAME"] . '</td>
-                  <td>$' . $row["PROD_PRICE"] . '</td>
-                  <td>$' . $row["PROD_RETAIL"] . '</td>
-                  <td>' . $row["PROD_STOCK"] . '</td>
-                  <td>        
-                      <a href="EditProd.php?id=' . $row["PROD_ID"] . '" style="text-decoration:none">
-                          <span class="glyphicon">&#x270f;</span>
-                      </a>
-                  </td>
-                </tr>';
-        $Count = $Count + 1;
+    while($row){
+        echo '<option value="'. $row["PROD_ID"] .'">' . $row["PROD_NAME"] . '</option>';
         $row = mysqli_fetch_assoc($thisQuery);
     }
-} else {
-    echo "<tr> No products to display.</tr>";
 }
+
+
+
 mysqli_close($conn);
 
 ?>

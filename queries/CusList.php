@@ -27,32 +27,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $thisQuery = $AllCusResult;
 }
 
-
-$Count = 1;
-
-if (mysqli_num_rows($thisQuery) > 0) {
+if ($dropdown != true){
+    $Count = 1;
+    
+    if (mysqli_num_rows($thisQuery) > 0) {
+        $row = mysqli_fetch_assoc($thisQuery);
+        while($row) {
+            echo '  <tr>
+                      <th scope="row"><a href="CusSummary.php?id=' . $row["CUS_ID"] . '" style="text-decoration:none">' . $Count . '</a></th>
+                      <td>' . $row["CUS_FNAME"] . '</td>
+                      <td>' . $row["CUS_LNAME"] . '</td>
+                      <td>' . $row["CUS_EMAIL"] . '</td>
+                      <td>' . $row["CUS_PHONE"] . '</td>
+                      <td>        
+                          <a href="EditCus.php?id=' . $row["CUS_ID"] . '" style="text-decoration:none">
+                              <span class="glyphicon">&#x270f;</span>
+                          </a>
+                      </td>
+                    </tr>';
+            $Count = $Count + 1;
+            $row = mysqli_fetch_assoc($thisQuery);
+        }
+    } else {
+        echo "<tr> No customers to display.</tr>";
+    }
+    
+//DROPDOWN LIST USED IN FORMS
+} else {
     $row = mysqli_fetch_assoc($thisQuery);
-    while($row) {
-        echo '  <tr>
-                  <th scope="row">' . $Count . '</th>
-                  <td>
-                      <a href="CusSummary.php?id=' . $row["CUS_ID"] . '" style="text-decoration:none">
-                      ' . $row["CUS_FNAME"] . '</a>
-                  </td>
-                  <td>' . $row["CUS_LNAME"] . '</td>
-                  <td>' . $row["CUS_EMAIL"] . '</td>
-                  <td>' . $row["CUS_PHONE"] . '</td>
-                  <td>        
-                      <a href="EditCus.php?id=' . $row["CUS_ID"] . '" style="text-decoration:none">
-                          <span class="glyphicon">&#x270f;</span>
-                      </a>
-                  </td>
-                </tr>';
-        $Count = $Count + 1;
+    while($row){
+        echo '<option value="'. $row["CUS_ID"] .'">' . $row["CUS_FNAME"] . ' ' . $row["CUS_LNAME"] . '</option>';
         $row = mysqli_fetch_assoc($thisQuery);
     }
-} else {
-    echo "<tr> No customers to display.</tr>";
 }
 mysqli_close($conn);
 

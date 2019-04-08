@@ -1,5 +1,6 @@
-<?php include ('top.php'); session_start();?>
+<?php include 'top.php'; session_start();?>
 <!DOCTYPE html>
+<html lang="en">
   
   <div class="container">
         
@@ -52,7 +53,7 @@
   <!--/.container-->
   
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  <footer class="py-5 bg-dark sticky">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; WeFix 2019</p>
     </div>

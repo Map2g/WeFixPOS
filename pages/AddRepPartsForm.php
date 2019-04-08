@@ -1,3 +1,16 @@
+<?php 
+
+include 'config.php';
+session_start(); 
+
+if(isset($_GET['id'])){
+  $repairID = $_GET['id'];
+} else {
+  echo "Could not get ID";
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +22,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>New Repair</title>
+  <title>Add parts</title>
 
   <!-- Custom fonts for this template-->
   <!--<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">-->
@@ -22,20 +35,23 @@
 <body class="bg-light">
   <div class="container">
     <div class="card card-register mx-auto mt-5">
-      <div class="card-header">New Ticket</div>
+      <div class="card-header">Add parts to repair</div>
       <div class="card-body">
-        <form action = "" method = "post">
+        <form action = "AddParts.php" method = "post">
+        
+        <input type="hidden" name="repID" value="<?php echo $repairID; ?>" >
           
           <div class="form-group">
             <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                  Product name: <input type="text" name="name" class="form-control" placeholder="iPhone 6s wifi adapter" required="required">
-                </div>
+              <div class="col-md-8">
+                Part: 
+                <select name="prodID" class="form-control"> 
+                  <?php $dropdown = true; include 'ProdList.php'; ?>
+                </select>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <div class="form-label-group">
-                  Price: <input type="number" name="price" <input type="number" value="0.00" min="0" class="form-control" required="required">
+                  Quantity: <input type="number" name="pQuantity" class="form-control form-control-lg" min="0" placeholder="0" required="required">
                   <!--<input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">-->
                   <!--<label for="lastName">Last name</label>-->
                 </div>
@@ -45,30 +61,25 @@
           
           <div class="form-group">
             <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                  Number in stock: <input type="number" name="stock" class="form-control" value="1" required="required">
-                </div>
-              </div>
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="form-group">
-                  Description: <textarea name="desc" class="form-control" placeholder="A short description of the product" required="required"></textarea>
-                  <!--<input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">-->
-                  <!--<label for="lastName">Last name</label>-->
+                  Item List: <!--<textarea class="form-control" placeholder="No parts added yet." required="required">-->
+                                <ul class="list-group">
+                                  <?php $purchase =  false; include 'PartList.php'; ?>
+                                </ul>
+                             <!--</textarea>-->
                 </div>
               </div>
             </div>
           </div>
           
-          </a>
-          <a href = "index.php"><button type="button">Cancel</button></a> 
-          <input type = "submit" value = "Save and exit">
+          <hr>
+          
+          <a href = "Customers.php"><button type="button">Exit</button></a>          
+          <!--<input type = "submit" value = "Save and continue">-->
+          <input type = "submit" value = "Add part">
           <!--<a class="btn btn-primary btn-block" href="login.html">Register</a>-->
         </form>
-        <!--<div class="text-center">-->
-        <!--  <a class="d-block small mt-3" href="login.html">Login Page</a>-->
-        <!--  <a class="d-block small" href="forgot-password.html">Forgot Password?</a>-->
-        <!--</div>-->
       </div>
     </div>
   </div>

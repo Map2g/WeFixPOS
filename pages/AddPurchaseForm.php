@@ -101,11 +101,20 @@ $purchase = true;     //this is a purchase
             <div class="form-row">
               <div class="col-md-12">
                 <div class="form-group">
-                  Item List: <!--<textarea class="form-control" placeholder="No parts added yet." required="required">-->
-                                <ul class="list-group">
-                                  <?php $purchase = true; include 'PartList.php'; ?>
-                                </ul>
-                             <!--</textarea>-->
+                  Item List:
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <?php $purchase = true; include 'PartList.php'; ?>
+                              </tbody>
+                            </table>
                 </div>
               </div>
             </div>

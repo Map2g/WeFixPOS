@@ -2,7 +2,8 @@
 
 include 'config.php';
      
-//List an individual's purchases                    
+//--------------------------Main queries to get purchase list--------------------------------------                   
+//Purchases made by individual customer. Used for CusSummary.php
 $purchaseSql = "SELECT 
                     PUR_ID,
                     PUR_DATE, 
@@ -11,10 +12,9 @@ $purchaseSql = "SELECT
                 FROM PURCHASE JOIN EMPLOYEE ON PURCHASE.EMP_ID = EMPLOYEE.EMP_ID
                 WHERE PURCHASE.CUS_ID = '$customerID'
                 ORDER BY PUR_DATE DESC";
-                
 $purchaseDetails = mysqli_query($conn, $purchaseSql);
                 
-//List all purchases.
+//All purchases. Used for Purchase.php
 $purchaseSqlAll = "SELECT 
                     PUR_ID,
                     PUR_DATE, 
@@ -25,19 +25,20 @@ $purchaseSqlAll = "SELECT
                 FROM PURCHASE JOIN EMPLOYEE ON PURCHASE.EMP_ID = EMPLOYEE.EMP_ID
                     JOIN CUSTOMER ON PURCHASE.CUS_ID = CUSTOMER.CUS_ID
                     ORDER BY PUR_DATE DESC";
-                    
 $purchaseDetailsAll = mysqli_query($conn, $purchaseSqlAll);
 
-//Error message if query doesn't work
+
+//Error message if either query doesn't work
 if ($purchaseDetailsAll == false || $purchaseDetails == false) {
   printf("Query error: %s\n", mysqli_error($conn));
 }
+//------------------------end purchase list queries------------------------------------------------------
 
-
-//For search query. Search option only available for full purchase list.
+//-----------------For search query. Search option only available for full purchase list.----------------
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $search = $_POST['purSearch'];
     
+    //Search only works for employee name, customer name, and purchase date. 
     $pSearch = "SELECT 
                     PUR_ID,
                     PUR_DATE, 
@@ -58,20 +59,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 
     $thisQuery = $pSResult;
-    
+//---------------------------------end search----------------------------------------------------------------
+//-------------------determining whether to display results for all or individual----------------------------
 } else if ($all == true){
     $thisQuery = $purchaseDetailsAll;
 } else {
     $thisQuery = $purchaseDetails;
 }
+//------------------------------------------------------------------------------------------------
 
+//-----------------begin displaying portion of code-----------------------------------------------
 $Count = 1;
 
 if (mysqli_num_rows($thisQuery) > 0) {
     $row = mysqli_fetch_assoc($thisQuery);
     while($row) {
         
-//-----------Get the purchase's total price and list of items bought------------------------------
+        //-----------Get the purchase's total price and list of items bought------------------------------
 
         $PurTotPrice = 0.00;
         $itemList = "";
@@ -96,7 +100,7 @@ if (mysqli_num_rows($thisQuery) > 0) {
             $rowPrice = mysqli_fetch_assoc($priceResult);
         }
         
-//==================================================================================================
+        //==================================================================================================
         
         if ($all == true){
                 echo '  <tr>
@@ -133,6 +137,8 @@ if (mysqli_num_rows($thisQuery) > 0) {
 } else {
     echo "<tr> No purchases to display.</tr>";
 }
+
+//-----------------------end display--------------------------------------------------------------------------------
 
 mysqli_close($conn);
 

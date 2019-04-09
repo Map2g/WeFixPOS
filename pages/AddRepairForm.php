@@ -80,7 +80,7 @@ if(isset($_GET['id'])){
             </div>
           </div>
           
-          <a href = "index.php"><button type="button">Cancel</button></a>          
+          <a href = "CusSummary.php?id=<?php echo $customerID ?>"><button type="button">Cancel</button></a>          
           <input type = "submit" value = "Save and add parts">
         </form>
       </div>

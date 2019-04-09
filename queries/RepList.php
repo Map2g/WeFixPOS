@@ -2,6 +2,8 @@
 
 include 'config.php';
 
+//--------------------------Main queries to get repair list--------------------------------------                   
+//Repair tickets made by individual customer. Used for CusSummary.php
 $repairSql = "SELECT 
                 REP_ID,
                 DEV_MODEL, 
@@ -16,9 +18,9 @@ $repairSql = "SELECT
                  JOIN EMPLOYEE ON REPAIR.EMP_ID = EMPLOYEE.EMP_ID
             WHERE CUSTOMER.CUS_ID = '$customerID'
             ORDER BY REP_DATE DESC";
-            
-            //JOIN REPAIR_INVOICE ON REPAIR.REP_ID = REPAIR_INVOICE.REP_ID
-            
+$repairDetails = mysqli_query($conn, $repairSql);            
+        
+//All repairs. Used for Repairs.php
 $repairSqlAll = "SELECT 
                 REP_ID,
                 CUS_FNAME,
@@ -32,27 +34,62 @@ $repairSqlAll = "SELECT
                 JOIN REPAIR ON DEVICE.DEV_ID = REPAIR.DEV_ID 
                  JOIN EMPLOYEE ON REPAIR.EMP_ID = EMPLOYEE.EMP_ID
             ORDER BY REP_DATE DESC";
-            
-$repairDetails = mysqli_query($conn, $repairSql);
 $repairDetailsAll = mysqli_query($conn, $repairSqlAll);
+
 
 //Error message if query doesn't work
 if ($repairDetails == false || $repairDetailsAll == false) {
   printf("Connection error: %s\nQuery error: %s\n", mysqli_error($conn), $repairSql);
 }
+//------------------------end repair list queries------------------------------------------------------
 
-if ($all == true){
+
+//-----------------For search query. Search option only available for full repair list.----------------
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $search = $_POST['repSearch'];
+    
+    //Search only works for employee name, customer name, repair date, and repair description. 
+    $rSearch = "SELECT 
+                    REP_ID,
+                    CUS_FNAME,
+                    CUS_LNAME,
+                    EMP_FNAME,
+                    EMP_LNAME,
+                    REP_DATE, 
+                    REP_LOCKRNO, 
+                    REP_DESC
+                FROM CUSTOMER JOIN DEVICE ON CUSTOMER.CUS_ID = DEVICE.CUS_ID 
+                    JOIN REPAIR ON DEVICE.DEV_ID = REPAIR.DEV_ID 
+                     JOIN EMPLOYEE ON REPAIR.EMP_ID = EMPLOYEE.EMP_ID
+                WHERE (CUS_FNAME LIKE '%" . $search . "%') OR (CUS_LNAME LIKE '%" . $search . "%')
+                    OR (EMP_FNAME LIKE '%" . $search . "%') OR (EMP_LNAME LIKE '%" . $search . "%')
+                    OR (REP_DATE LIKE '%" . $search . "%') OR (REP_DESC LIKE '%" . $search . "%')
+                ORDER BY REP_DATE DESC";
+    $rSResult = mysqli_query($conn, $rSearch);
+
+    if ($rSResult == false ) {
+        printf("Query error: %s\n", mysqli_error($conn));
+    }
+
+    $thisQuery = $rSResult;
+//---------------------------------end search----------------------------------------------------------------
+//-------------------determining whether to display results for all or individual----------------------------
+} else if ($all == true){
     $thisQuery = $repairDetailsAll;
 } else{
     $thisQuery = $repairDetails;
 }
+//------------------------------------------------------------------------------------------------
 
-//Displaying repair query results
+//-----------------begin displaying portion of code-----------------------------------------------
 $CountR = 1;
 
 if (mysqli_num_rows($thisQuery) > 0) {
     $rowR = mysqli_fetch_assoc($thisQuery);
     while($rowR) {
+        
+        //-----------Get the repair's total price and list of items used------------------------------
+
         $RepTotPrice = 0.00;
         $rItemList = "";
         
@@ -75,6 +112,8 @@ if (mysqli_num_rows($thisQuery) > 0) {
             $RepTotPrice = $RepTotPrice + ($rowRepPrice["PROD_PRICE"] * $rowRepPrice["PROD_QUANTITY"]);
             $rowRepPrice = mysqli_fetch_assoc($repPriceResult);
         }
+        
+        //==================================================================================================
         
         if ($all == true){
                     echo '
@@ -116,6 +155,8 @@ if (mysqli_num_rows($thisQuery) > 0) {
 } else {
     echo '<tr> No existing repairs to display.</tr>';
 }
+
+//-----------------------end display--------------------------------------------------------------------------------
 
 mysqli_close($conn);
 

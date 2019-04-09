@@ -1,9 +1,18 @@
 <?php
 
 include 'top.php';
+include 'config.php';
 
 if(isset($_GET['id'])){
   $customerID = $_GET['id'];
+  
+  $getName = "SELECT CUS_FNAME, CUS_LNAME, CUS_PHONE FROM CUSTOMER WHERE CUS_ID = '". $customerID . "'";
+  $nameResult = mysqli_query($conn, $getName);
+  $nameRow = mysqli_fetch_assoc($nameResult);
+  $cusFname = $nameRow["CUS_FNAME"];
+  $cusLname = $nameRow["CUS_LNAME"];
+  $cusPhone = $nameRow["CUS_PHONE"];
+  
 } else {
   echo "Could not get ID";
 }
@@ -12,14 +21,18 @@ if(isset($_GET['id'])){
 
   <div class="container">
 
-    <div class="row" style="margin-bottom:50px;"></div>
+    <div class="row" style="margin-bottom:25px; margin-top:25px; margin-left:0px;">
+      <h2 style="color:#dc3545;">
+        <u><?php echo $cusFname . ' ' . $cusLname . '</u>&ensp;&ensp;&ensp;Phone #: ' . $cusPhone; ?>
+      </h2>
+    </div>
 
     <div class="row-center-align-items">
         
             <!--<div class="col-6">  -->
-              <h1 class="my-4">
+              <h3 class="my-4">
                   Repairs: 
-              </h1>
+              </h3>
               <table class="table">
                 <thead>
                     <tr>
@@ -45,9 +58,9 @@ if(isset($_GET['id'])){
 
         <div class="row-center-align-items">
             <!--<div class="col-5">-->
-              <h1 class="my-4">
+              <h3 class="my-4">
                   Purchases: 
-              </h1>
+              </h3>
               <table class="table">
                 <thead>
                     <tr>
@@ -70,9 +83,9 @@ if(isset($_GET['id'])){
         
         <div class="row">
             <div class="col-8">  
-              <h1 class="my-4">
+              <h3 class="my-4">
                   My Devices:
-              </h1>
+              </h3>
               <table class="table">
                 <thead>
                     <tr>

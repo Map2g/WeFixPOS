@@ -9,6 +9,12 @@
               </h1>
           </div>
             
+            <div class="col-5">
+              <form action = "Repairs.php" method = "post">
+                <input type="search" name="repSearch" placeholder="Search"><input type = "submit" value = "Search">
+              </form>
+            </div>
+            
             <div class="col-3">
                 <a href = "AddRepairFormGeneral.php"><button type="button">&plus; Repair</button></a>
             </div>

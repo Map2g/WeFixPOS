@@ -19,6 +19,7 @@ $row = mysqli_fetch_assoc($devDetails);
 
 $model = $row["DEV_MODEL"];
 $phone = $row["DEV_PHONE"];
+$owner = $row["CUS_ID"];
 
 ?>
 
@@ -51,6 +52,8 @@ $phone = $row["DEV_PHONE"];
         <form action = "UpdateDev.php" method = "post">
           
            <input type="hidden" name="id" value=" <?php echo $_GET['id']; ?> ">
+           
+           <input type="hidden" name="cusID" value=" <?php echo $owner; ?> ">
           
           <div class="form-group">
             <div class="form-row">
@@ -69,12 +72,13 @@ $phone = $row["DEV_PHONE"];
             </div>
           </div>
           
+          <a href = "CusSummary.php?id=<?php echo $owner ?>"><button type="button">Cancel</button></a>
           <input type = "submit" value = "Submit">
           <!--<a class="btn btn-primary btn-block" href="login.html">Register</a>-->
         </form>
         
         <!--<form action = "DeleteDev.php" method = "post">-->
-        <!--    <input type="hidden" name="id" value="<?php echo $deviceID; ?>">-->
+        <!--    <input type="hidden" name="id" value="">-->
         <!--    <br>-->
         <!--    <center><input type = "submit" value = "Delete"></center>-->
         <!--</form>-->

@@ -25,16 +25,25 @@ if ($purchase == true){
     $query = $RepProdResult;
 }
 
+$TotPrice = 0.00;
 
 if (mysqli_num_rows($query) > 0) {
     $rowN = mysqli_fetch_assoc($query);
     while($rowN) {
-        echo '<li class="list-group-item">'. 
-                $rowN["PROD_NAME"] . '&ensp;&ensp;&ensp;$' . $rowN["PROD_PRICE"] . '&ensp;&ensp;&ensp;&ensp;' . $rowN["PROD_QUANTITY"] . '
-             </li>';
+        $TotPrice = $TotPrice + ($rowN["PROD_PRICE"] * $rowN["PROD_QUANTITY"]);
+        echo '<tr>
+                <td>' . $rowN["PROD_NAME"] . '</td>
+                <td>$' . $rowN["PROD_PRICE"] . '</td>
+                <td>x' . $rowN["PROD_QUANTITY"] . '</td>
+              </tr>';
         $rowN = mysqli_fetch_assoc($query);
     }
+    echo '<td></td><td></td><td style="color:red;">$'. $TotPrice . '<td>';
 }
+
+        // echo '<li class="list-group-item">'. 
+        //         $rowN["PROD_NAME"] . '&ensp;&ensp;&ensp;$' . $rowN["PROD_PRICE"] . '&ensp;&ensp;&ensp;&ensp;' . $rowN["PROD_QUANTITY"] . '
+        //      </li>';
 
 mysqli_close($conn);
 

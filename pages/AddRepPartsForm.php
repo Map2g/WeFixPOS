@@ -63,11 +63,21 @@ if(isset($_GET['id'])){
             <div class="form-row">
               <div class="col-md-12">
                 <div class="form-group">
-                  Item List: <!--<textarea class="form-control" placeholder="No parts added yet." required="required">-->
-                                <ul class="list-group">
-                                  <?php $purchase = false; include 'PartList.php'; ?>
-                                </ul>
-                             <!--</textarea>-->
+                  Item List:
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <?php $purchase = false; include 'PartList.php'; ?>
+                              </tbody>
+                            </table>
+                             
                 </div>
               </div>
             </div>
@@ -75,7 +85,7 @@ if(isset($_GET['id'])){
           
           <hr>
           
-          <a href = "Customers.php"><button type="button">Exit</button></a>          
+          <a href = "Repairs.php"><button type="button">Exit</button></a>          
           <!--<input type = "submit" value = "Save and continue">-->
           <input type = "submit" value = "Add part">
           <!--<a class="btn btn-primary btn-block" href="login.html">Register</a>-->

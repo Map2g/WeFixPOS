@@ -34,7 +34,7 @@ if ($dropdown != true){
     if (mysqli_num_rows($thisQuery) > 0) {
         $row = mysqli_fetch_assoc($thisQuery);
         while($row) {
-            echo '  <tr>
+            echo '  <tr '; if($row["PROD_STOCK"] == 0){echo 'style="color:red"';} echo '>
                       <th scope="row">' . $Count . '</th>
                       <td>' . $row["PROD_NAME"] . '</td>
                       <td>$' . $row["PROD_PRICE"] . '</td>

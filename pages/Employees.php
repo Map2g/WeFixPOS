@@ -34,7 +34,6 @@
                   <th scope="col">Last</th>
                   <th scope="col">Email</th>
                   <th scope="col">Phone Number</th>
-                  <th scope="col">Employee ID</th>
                   <th scope="col"></th>
                 </tr>
               </thead>

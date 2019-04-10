@@ -40,7 +40,6 @@ if ($dropdown != true){
                       <td>' . $row["EMP_LNAME"] . '</td>
                       <td>' . $row["EMP_EMAIL"] . '</td>
                       <td>' . $row["EMP_PHONE"] . '</td>
-                      <td>' . $row["EMP_ID"] . '</td>
                       <td>        
                           <a href="EditEmp.php?id=' . $row["EMP_ID"] . '" style="text-decoration:none">
                               <span class="glyphicon">&#x270f;</span>

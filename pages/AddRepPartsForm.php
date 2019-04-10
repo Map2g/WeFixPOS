@@ -35,7 +35,7 @@ if(isset($_GET['id'])){
 <body class="bg-light">
   <div class="container">
     <div class="card card-register mx-auto mt-5">
-      <div class="card-header">Add parts to repair</div>
+      <div class="card-header">Add parts used in repair</div>
       <div class="card-body">
         <form action = "AddParts.php" method = "post">
         

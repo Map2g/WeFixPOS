@@ -33,12 +33,12 @@ if (mysqli_num_rows($query) > 0) {
         $TotPrice = $TotPrice + ($rowN["PROD_PRICE"] * $rowN["PROD_QUANTITY"]);
         echo '<tr>
                 <td>' . $rowN["PROD_NAME"] . '</td>
-                <td>$' . $rowN["PROD_PRICE"] . '</td>
+                <td>$' . number_format($rowN["PROD_PRICE"], 2) . '</td>
                 <td>x' . $rowN["PROD_QUANTITY"] . '</td>
               </tr>';
         $rowN = mysqli_fetch_assoc($query);
     }
-    echo '<td></td><td></td><td style="color:red;">$'. $TotPrice . '<td>';
+    echo '<td></td><td></td><td style="color:red;">$'. number_format($TotPrice, 2) . '<td>';
 }
 
         // echo '<li class="list-group-item">'. 

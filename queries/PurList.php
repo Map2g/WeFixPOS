@@ -109,7 +109,7 @@ if (mysqli_num_rows($thisQuery) > 0) {
                   <td>' . $row["CUS_FNAME"] . ' ' . $row["CUS_LNAME"] . '</td>
                   <td>' . $row["EMP_FNAME"] . ' ' . $row["EMP_LNAME"] .'</td>
                   <td>' . $itemList . '</td>
-                  <td>$' . $PurTotPrice . '</td>
+                  <td>$' . number_format($PurTotPrice, 2) . '</td>
                   <td>
                           <a href="DeletePur.php?id=' . $row["PUR_ID"] . '" style="text-decoration:none">
                               <span class="glyphicon">&#x274C;</span>
@@ -123,7 +123,7 @@ if (mysqli_num_rows($thisQuery) > 0) {
                         <td>' . $row["PUR_DATE"] . '</td>
                         <td>' . $row["EMP_FNAME"] . ' ' . $row["EMP_LNAME"] . '</td>
                         <td>' . $itemList . '</td>
-                        <td>$' . $PurTotPrice . '</td>
+                        <td>$' . number_format($PurTotPrice, 2) . '</td>
                         <td>
                           <a href="DeletePur.php?id=' . $row["PUR_ID"] . '" style="text-decoration:none">
                               <span class="glyphicon">&#x274C;</span>

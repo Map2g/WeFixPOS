@@ -124,7 +124,7 @@ if (mysqli_num_rows($thisQuery) > 0) {
                       <td>' . $rowR["EMP_FNAME"] . ' ' . $rowR["EMP_LNAME"] . '</td>
                       <td>' . $rowR["REP_LOCKRNO"] . '</td>
                       <td>' . $rowR["REP_DESC"] . '</td>
-                      <td>$' . $RepTotPrice . '</td>
+                      <td>$' . number_format($RepTotPrice, 2) . '</td>
                       <td>
                           <a href="DeleteRep.php?id=' . $rowR["REP_ID"] . '" style="text-decoration:none">
                               <span class="glyphicon">&#x274C;</span>
@@ -141,7 +141,7 @@ if (mysqli_num_rows($thisQuery) > 0) {
                       <td>' . $rowR["EMP_FNAME"] . ' ' . $rowR["EMP_LNAME"] . '</td>
                       <td>' . $rowR["REP_LOCKRNO"] . '</td>
                       <td>' . $rowR["REP_DESC"] . '</td>
-                      <td>$' . $RepTotPrice . '</td>
+                      <td>$' . number_format($RepTotPrice, 2) . '</td>
                       <td>
                           <a href="DeleteRep.php?id=' . $rowR["REP_ID"] . '" style="text-decoration:none">
                               <span class="glyphicon">&#x274C;</span>

@@ -64,7 +64,7 @@ $owner = $row["CUS_ID"];
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
-                  Phone Number: <input type="tel" name="phone" class="form-control" value="<?php echo $phone ?>" required="required">
+                  Phone Number: <input type="tel" name="phone" class="form-control" value="<?php echo substr($phone, 0, 3) .'-'. substr($phone, 3, 3) .'-'. substr($phone, 6, 4); ?>" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required="required">
                   <!--<input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">-->
                   <!--<label for="lastName">Last name</label>-->
                 </div>

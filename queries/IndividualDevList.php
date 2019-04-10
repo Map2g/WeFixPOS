@@ -27,7 +27,7 @@ if ($dropdown != true){
                         <tr>
                           <th scope="row">' . $CountD . '</th>
                           <td>' . $rowD["DEV_MODEL"] . '</td>
-                          <td>' . $rowD["DEV_PHONE"] . '</td>
+                          <td>' . substr($rowD["DEV_PHONE"], 0, 3) .'-'. substr($rowD["DEV_PHONE"], 3, 3) .'-'. substr($rowD["DEV_PHONE"], 6, 4) . '</td>
                           <td>        
                               <a href="EditDev.php?id=' . $rowD["DEV_ID"] . '" style="text-decoration:none">
                                   <span class="glyphicon">&#x270f;</span>
@@ -46,7 +46,7 @@ if ($dropdown != true){
     if (mysqli_num_rows($deviceDetails) > 0) {
         $rowD = mysqli_fetch_assoc($deviceDetails);
         while($rowD){
-            echo '<option value="'. $rowD["DEV_ID"] .'">' . $rowD["DEV_MODEL"] . " " . $rowD["DEV_PHONE"] . '</option>';
+            echo '<option value="'. $rowD["DEV_ID"] .'">' . $rowD["DEV_MODEL"] . " " . substr($rowD["DEV_PHONE"], 0, 3) .'-'. substr($rowD["DEV_PHONE"], 3, 3) .'-'. substr($rowD["DEV_PHONE"], 6, 4) . '</option>';
             $rowD = mysqli_fetch_assoc($deviceDetails);
         }
     } else {

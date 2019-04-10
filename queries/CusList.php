@@ -15,7 +15,7 @@ if ($AllCusResult == false ) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $search = $_POST['cusSearch'];
     
-    $cSearch = "SELECT * FROM CUSTOMER WHERE (CUS_FNAME LIKE '%" . $search . "%') OR (CUS_LNAME LIKE '%" . $search . "%')";
+    $cSearch = "SELECT * FROM CUSTOMER WHERE (CUS_FNAME LIKE '%" . $search . "%') OR (CUS_LNAME LIKE '%" . $search . "%') OR (CUS_EMAIL LIKE '%" . $search . "%')";
     $cSResult = mysqli_query($conn, $cSearch);
 
     if ($cSResult == false ) {
@@ -38,7 +38,7 @@ if ($dropdown != true){
                       <td>' . $row["CUS_FNAME"] . '</td>
                       <td>' . $row["CUS_LNAME"] . '</td>
                       <td>' . $row["CUS_EMAIL"] . '</td>
-                      <td>' . $row["CUS_PHONE"] . '</td>
+                      <td>' . substr($row["CUS_PHONE"], 0, 3) .'-'. substr($row["CUS_PHONE"], 3, 3) .'-'. substr($row["CUS_PHONE"], 6, 4) . '</td>
                       <td>        
                           <a href="EditCus.php?id=' . $row["CUS_ID"] . '" style="text-decoration:none">
                               <span class="glyphicon">&#x270f;</span>

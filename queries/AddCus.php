@@ -7,7 +7,7 @@ include 'config.php'; // config.php connects to the database
 $first_name = mysql_real_escape_string(htmlspecialchars($_POST['fname']));
 $last_name = mysql_real_escape_string(htmlspecialchars($_POST['lname']));
 $email = $_POST['email'];
-$phone = $_POST['phone'];
+$phone = preg_replace("/[^0-9]/", "", $_POST['phone']);
 
 //*************************************************************************************************************************************
 

@@ -15,7 +15,7 @@ if ($AllEmpResult == false ) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $search = $_POST['empSearch'];
     
-    $eSearch = "SELECT * FROM EMPLOYEE WHERE (EMP_FNAME LIKE '%" . $search . "%') OR (EMP_LNAME LIKE '%" . $search . "%')";
+    $eSearch = "SELECT * FROM EMPLOYEE WHERE (EMP_FNAME LIKE '%" . $search . "%') OR (EMP_LNAME LIKE '%" . $search . "%') OR (EMP_EMAIL LIKE '%" . $search . "%')";
     $eSResult = mysqli_query($conn, $eSearch);
 
     if ($eSResult == false ) {
@@ -39,7 +39,7 @@ if ($dropdown != true){
                       <td>' . $row["EMP_FNAME"] . '</td>
                       <td>' . $row["EMP_LNAME"] . '</td>
                       <td>' . $row["EMP_EMAIL"] . '</td>
-                      <td>' . $row["EMP_PHONE"] . '</td>
+                      <td>' . substr($row["EMP_PHONE"], 0, 3) .'-'. substr($row["EMP_PHONE"], 3, 3) .'-'. substr($row["EMP_PHONE"], 6, 4) . '</td>
                       <td>        
                           <a href="EditEmp.php?id=' . $row["EMP_ID"] . '" style="text-decoration:none">
                               <span class="glyphicon">&#x270f;</span>

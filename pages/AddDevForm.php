@@ -44,12 +44,12 @@ if(isset($_GET['id'])){
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
-                  Model: <input type="text" name="model" class="form-control" placeholder="Jack" required="required">
+                  Model: <input type="text" name="model" class="form-control" placeholder="Nokia 7 Plus" required="required">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
-                  Phone Number: <input type="tel" name="phone" class="form-control" placeholder="1234567891" required="required">
+                  Phone Number: <input type="tel" name="phone" class="form-control" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required="required">
                   <!--<input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">-->
                   <!--<label for="lastName">Last name</label>-->
                 </div>

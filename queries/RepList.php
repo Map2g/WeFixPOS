@@ -137,7 +137,7 @@ if (mysqli_num_rows($thisQuery) > 0) {
                       <th scope="row">' . $CountR . '</th>
                       <td>' . $rowR["REP_DATE"] . '</td>
                       <td>' . $rowR["DEV_MODEL"] . '</td>
-                      <td>' . $rowR["DEV_PHONE"] . '</td>
+                      <td>' . substr($rowR["DEV_PHONE"], 0, 3) .'-'. substr($rowR["DEV_PHONE"], 3, 3) .'-'. substr($rowR["DEV_PHONE"], 6, 4) . '</td>
                       <td>' . $rowR["EMP_FNAME"] . ' ' . $rowR["EMP_LNAME"] . '</td>
                       <td>' . $rowR["REP_LOCKRNO"] . '</td>
                       <td>' . $rowR["REP_DESC"] . '</td>

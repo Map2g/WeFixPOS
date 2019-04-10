@@ -23,7 +23,7 @@ if(isset($_GET['id'])){
 
     <div class="row" style="margin-bottom:25px; margin-top:25px; margin-left:0px;">
       <h2 style="color:#dc3545;">
-        <u><?php echo $cusFname . ' ' . $cusLname . '</u>&ensp;&ensp;&ensp;Phone #: ' . $cusPhone; ?>
+        <u><?php echo $cusFname . ' ' . $cusLname . '</u>&ensp;&ensp;&ensp;Phone #: ' . substr($cusPhone, 0, 3) .'-'. substr($cusPhone, 3, 3) .'-'. substr($cusPhone, 6, 4); ?>
       </h2>
     </div>
 

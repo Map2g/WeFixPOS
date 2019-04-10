@@ -7,19 +7,17 @@ include 'config.php'; // config.php connects to the database
 $first_name = mysql_real_escape_string(htmlspecialchars($_POST['fname']));
 $last_name = mysql_real_escape_string(htmlspecialchars($_POST['lname']));
 $email = $_POST['email'];
-$phone = $_POST['phone'];
-$password = mysql_real_escape_string(htmlspecialchars($_POST['Password']));
+$phone = preg_replace("/[^0-9]/", "", $_POST['phone']);
 
 //*************************************************************************************************************************************
 
 // inserts the variables into the columns of the table
-$sql = "INSERT INTO EMPLOYEE (EMP_FNAME, EMP_LNAME, EMP_PHONE, EMP_EMAIL, EMP_PASS) VALUES ('$first_name', '$last_name', '$phone', '$email', '$password')";
+$sql = "INSERT INTO EMPLOYEE (EMP_FNAME, EMP_LNAME, EMP_PHONE, EMP_EMAIL) VALUES ('$first_name', '$last_name', '$phone', '$email')";
 
 //*************************************************************************************************************************************
 
 if(mysqli_query($conn, $sql)){
-    $last_id = mysqli_insert_id($conn);
-    $message = "This employee's ID is ". $last_id;
+    $message = "Employee successfully added";
     echo '<script type="text/javascript">
     alert("'. $message. '");
     location="Employees.php";

@@ -6,7 +6,7 @@ include 'config.php';
 $devID = $_POST['id'];
 $cusID = $_POST['cusID'];
 $model = mysql_real_escape_string(htmlspecialchars($_POST['model']));
-$phone = htmlspecialchars($_POST['phone']);
+$phone = preg_replace("/[^0-9]/", "", $_POST['phone']);
 
 $sql = "UPDATE DEVICE
         SET DEV_MODEL = '$model', DEV_PHONE = '$phone'

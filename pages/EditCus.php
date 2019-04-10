@@ -73,12 +73,12 @@ $Ephone = $row["CUS_PHONE"];
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-label-group">
-                  Phone number: <input type="tel" name="phone" class="form-control" value="<?php echo $Ephone; ?>" required="required">
+                  Phone number: <input type="tel" name="phone" class="form-control" value="<?php echo substr($Ephone, 0, 3) .'-'. substr($Ephone, 3, 3) .'-'. substr($Ephone, 6, 4); ?>" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required="required">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
-                  Email: <input type="text" name="email" class="form-control" value="<?php echo $Eemail; ?>" required="required">
+                  Email: <input type="email" name="email" class="form-control" value="<?php echo $Eemail; ?>" required="required">
                 </div>
               </div>
             </div>

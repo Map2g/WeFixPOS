@@ -85,7 +85,7 @@ if(isset($_GET['id'])){
           
           <hr>
           
-          <a href = "Repairs.php"><button type="button">Exit</button></a>          
+          <a href = "Repairs.php"><button type="button">Done</button></a>          
           <!--<input type = "submit" value = "Save and continue">-->
           <input type = "submit" value = "Add part">
           <!--<a class="btn btn-primary btn-block" href="login.html">Register</a>-->

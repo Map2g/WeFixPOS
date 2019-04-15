@@ -5,6 +5,7 @@
 
 include 'config.php';
 
+//Gets customerID sent in the URL.
 if(isset($_GET['id'])){
   $customerID = $_GET['id'];
 } else {
@@ -39,6 +40,7 @@ if(isset($_GET['id'])){
         <form action = "AddDev.php" method = "post">
           
            <input type="hidden" name="id" value=" <?php echo $_GET['id']; ?> ">
+           <!--Hidden form to pass customerID along-->
           
           <div class="form-group">
             <div class="form-row">

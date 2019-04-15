@@ -3,10 +3,14 @@
 include 'top.php';
 include 'config.php';
 
+//Get the cusID from URL sent by CusList.php
 if(isset($_GET['id'])){
   $customerID = $_GET['id'];
   
+  //==============Query just to get customer name and phone number to display at the top===============================
   $getName = "SELECT CUS_FNAME, CUS_LNAME, CUS_PHONE FROM CUSTOMER WHERE CUS_ID = '". $customerID . "'";
+  
+      //should've made it double check that there is just once matching row, but I know that CUS_ID is unique.
   $nameResult = mysqli_query($conn, $getName);
   $nameRow = mysqli_fetch_assoc($nameResult);
   $cusFname = $nameRow["CUS_FNAME"];
@@ -117,14 +121,6 @@ if(isset($_GET['id'])){
         
     </div>
     <!--./container-->
-
-  <!-- Footer -->
-  <!--<footer class="py-5 bg-dark sticky">-->
-  <!--  <div class="container">-->
-  <!--    <p class="m-0 text-center text-white">Copyright &copy; WeFix 2019</p>-->
-  <!--  </div>-->
-    <!-- /.container -->
-  <!--</footer>-->
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

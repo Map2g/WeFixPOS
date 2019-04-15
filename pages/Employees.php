@@ -1,4 +1,7 @@
-<?php include 'top.php'; session_start();?>
+<?php 
+session_start(); //no longer used
+include ('top.php'); //navbar
+?>
 <!DOCTYPE html>
 <html lang="en">
   
@@ -11,6 +14,7 @@
               </h1>
           </div> 
             
+            <!--Search bar, implemented as form calling EmpList-->
             <div class="col-5">
               <form action = "Employees.php" method = "post">
                 <input type="search" name="empSearch" placeholder="Search"><input type = "submit" value = "Search">
@@ -53,14 +57,6 @@
   
   </div>
   <!--/.container-->
-  
-  <!-- Footer -->
-  <!--<footer class="py-5 bg-dark sticky">-->
-  <!--  <div class="container">-->
-  <!--    <p class="m-0 text-center text-white">Copyright &copy; WeFix 2019</p>-->
-  <!--  </div>-->
-    <!-- /.container -->
-  <!--</footer>-->
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

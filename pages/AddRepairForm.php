@@ -1,8 +1,9 @@
 <?php 
 
 //include 'config.php';
-session_start(); 
+session_start();  //no longer used
 
+//Get customerID sent in URL from CusSummary.php
 if(isset($_GET['id'])){
   $customerID = $_GET['id'];
 } else {
@@ -44,6 +45,7 @@ if(isset($_GET['id'])){
               <div class="col-md-6">
                 <div class="form-label-group">
                   Customer ID: <input type="text" name="cusID" class="form-control" value="<?php echo $customerID; ?>" required="required" readonly>
+                          <!--Readonly because the customerID is fixed in this form-->
                 </div>
               </div>
               <div class="col-md-6">
@@ -80,7 +82,8 @@ if(isset($_GET['id'])){
             </div>
           </div>
           
-          <a href = "CusSummary.php?id=<?php echo $customerID ?>"><button type="button">Cancel</button></a>          
+          <a href = "CusSummary.php?id=<?php echo $customerID ?>"><button type="button">Cancel</button></a>  
+          <!--Sends user back to the correct CusSummary page-->
           <input type = "submit" value = "Save and add parts">
         </form>
       </div>

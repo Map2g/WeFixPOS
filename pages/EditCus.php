@@ -5,12 +5,14 @@
 
 include 'config.php';
 
+//Get ID of customer to edit from URL sent from ProdList
 if(isset($_GET['id'])){
   $customerID = $_GET['id'];
 } else {
   echo "Could not get ID";
 }
 
+//===========Get customer details to fill in form with current values======================
 $sql = "SELECT * FROM CUSTOMER WHERE CUS_ID = '" . $customerID . "'";
 $cusDetails = mysqli_query($conn, $sql);
 
@@ -24,6 +26,7 @@ $fname = $row["CUS_FNAME"];
 $lname = $row["CUS_LNAME"];
 $Eemail = $row["CUS_EMAIL"];
 $Ephone = $row["CUS_PHONE"];
+//============================================================================================
 
 ?>
 
@@ -92,7 +95,7 @@ $Ephone = $row["CUS_PHONE"];
         <!--Delete action would cause many referential integrity issues -->
         
         <!--<form action = "DeleteCus.php" method = "post">-->
-        <!--    <input type="hidden" name="id" value="<?php echo $customerID; ?>">-->
+        <!--    <input type="hidden" name="id" value="">-->
         <!--    <br>-->
         <!--    <center><input type = "submit" value = "Delete"></center>-->
         <!--</form>-->

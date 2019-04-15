@@ -2,12 +2,14 @@
 
 include 'config.php';
 
+//Get ID of device to edit from URL sent from IndividualDevList
 if(isset($_GET['id'])){
   $deviceID = $_GET['id'];
 } else {
   echo "Could not get ID";
 }
 
+//===========Get device details to fill in form with current values======================
 $sql = "SELECT * FROM DEVICE WHERE DEV_ID = '". $deviceID ."'";
 $devDetails = mysqli_query($conn, $sql);
 
@@ -20,6 +22,7 @@ $row = mysqli_fetch_assoc($devDetails);
 $model = $row["DEV_MODEL"];
 $phone = $row["DEV_PHONE"];
 $owner = $row["CUS_ID"];
+//=======================================================================================
 
 ?>
 

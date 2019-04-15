@@ -1,8 +1,9 @@
 <?php 
 
 //include 'config.php';
-session_start(); 
+session_start(); //No longer used
 
+//gets customerID from AddRepair.php when customer is selected in the dropdown menu
 if(isset($_GET['id'])){
   $customerID = $_GET['id'];
 }
@@ -35,21 +36,21 @@ if(isset($_GET['id'])){
     <div class="card card-register mx-auto mt-5">
       <div class="card-header">New Repair Ticket</div>
       <div class="card-body">
-        <!--<form action = "AddRepair.php" method = "post">-->
-          
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
                 
                <form action="AddRepair.php" method="post">
-                Customer: 
-                <select name="cusID" class="form-control" required="required" onchange="this.form.submit()">
-                  <option value="">--No option selected--</option>
-                  <?php $dropdown = true; include 'CusList.php'; ?>
-                </select>
+                 <!--Submit single dropdown select as form on change so device dropdown is accurate to the selected customer-->
+                  Customer: 
+                  <select name="cusID" class="form-control" required="required" onchange="this.form.submit()">
+                    <option value="">--No option selected--</option>
+                    <?php $dropdown = true; include 'CusList.php'; ?>
+                  </select>
                 </form>
                 
             <form action = "AddRepair.php" method = "post">
+            <!--Send all repair information to AddRepair to create the record. No record was created with the above form.-->
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
@@ -68,6 +69,7 @@ if(isset($_GET['id'])){
                  Device: 
                 <select name="DevID" class="form-control">
                   <?php $dropdown = true; include 'IndividualDevList.php'; ?>
+                  <!--IndividualDevList.php gets $customerID from this page. No need to send through URL-->
                 </select>
               </div>
             </div>
@@ -85,15 +87,9 @@ if(isset($_GET['id'])){
             </div>
           </div>
           
-          <a href = "index.php"><button type="button">Exit</button></a>          
-          <!--<input type = "submit" value = "Save and continue">-->
+          <a href = "index.php"><button type="button">Cancel</button></a>          
           <input type = "submit" value = "Save and add parts">
-          <!--<a class="btn btn-primary btn-block" href="login.html">Register</a>-->
         </form>
-        <!--<div class="text-center">-->
-        <!--  <a class="d-block small mt-3" href="login.html">Login Page</a>-->
-        <!--  <a class="d-block small" href="forgot-password.html">Forgot Password?</a>-->
-        <!--</div>-->
       </div>
     </div>
   </div>

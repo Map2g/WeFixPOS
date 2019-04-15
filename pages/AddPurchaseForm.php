@@ -1,8 +1,9 @@
 <?php 
 
 //include 'config.php';
-session_start(); 
+session_start();    //no longer used
 
+//Get purchase ID to determine which buttons need to be disabled and send the purID to AddParts.php
 if(isset($_GET['pid'])){
   $purchaseID = $_GET['pid'];
 } else {
@@ -39,8 +40,9 @@ $purchase = true;     //this is a purchase
     <div class="card card-register mx-auto mt-5">
       <div class="card-header">New Purchase</div>
       <div class="card-body">
+        
         <form action = "AddPurchase.php" method = "post">
-          
+          <!--Sends info to create record in PURCHASE table-->
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
@@ -48,10 +50,6 @@ $purchase = true;     //this is a purchase
                 <select name="cusID" class="form-control" required="required" <?php if(isset($_GET['pid'])){ echo "readonly"; } ?>>
                   <?php $dropdown = true; include 'CusList.php'; ?>
                 </select>
-                
-                <!--<div class="form-label-group">-->
-                <!--  Customer ID: <input type="text" name="cusID" class="form-control" value="<?php echo $customerID; ?>" required="required">-->
-                <!--</div>-->
               </div>
               <div class="col-md-6">
                 <div class="form-label-group">
@@ -64,12 +62,13 @@ $purchase = true;     //this is a purchase
             </div>
           </div>
           
-          <input type = "submit" value = "Submit" <?php if(isset($_GET['pid'])){ echo "disabled"; } ?> >
+            <input type = "submit" value = "Submit" <?php if(isset($_GET['pid'])){ echo "disabled"; } ?> >
           </form>
           
           <br>
           
           <form action = "AddParts.php" method = "post">
+            <!--Sends info to create corresponding record in PURCHASE_INVOICE table-->
             
             <input type="hidden" name="purchase" value="true">
             <input type="hidden" name="purID" value="<?php echo $purchaseID; ?>" >

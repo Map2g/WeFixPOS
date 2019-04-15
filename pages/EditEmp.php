@@ -5,12 +5,14 @@
 
 include 'config.php';
 
+//Get ID of employee to edit from URL sent from EmpList
 if(isset($_GET['id'])){
   $employeeID = $_GET['id'];
 } else {
   echo "Could not get ID";
 }
 
+//===========Get employee details to fill in form with current values======================
 $sql = "SELECT * FROM EMPLOYEE WHERE EMP_ID = '" . $employeeID . "'";
 $empDetails = mysqli_query($conn, $sql);
 
@@ -18,18 +20,13 @@ if ($empDetails == false ) {
   printf("Query error: %s\n%s", mysqli_error($conn), $sql);
 }
 
-// if (mysqli_num_rows($empDetails) == 1){
-//     printf("Yay!");
-// } else {
-//     printf("%s\n%s", $sql, $_GET["id"]);
-// }
-
 $row = mysqli_fetch_assoc($empDetails);
 
 $fname = $row["EMP_FNAME"];
 $lname = $row["EMP_LNAME"];
 $Eemail = $row["EMP_EMAIL"];
 $Ephone = $row["EMP_PHONE"];
+//===========================================================================================
 
 ?>
 
@@ -94,12 +91,6 @@ $Ephone = $row["EMP_PHONE"];
           <input type = "submit" value = "Submit">
         </form>
         
-        
-        <!--<form action = "DeleteEmp.php" method = "post">-->
-        <!--    <input type="hidden" name="id" value="<?php echo $employeeID; ?>">-->
-        <!--    <br>-->
-        <!--    <center><input type = "submit" value = "Delete"></center>-->
-        <!--</form>-->
       </div>
     </div>
   </div>

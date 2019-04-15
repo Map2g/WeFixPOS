@@ -1,8 +1,9 @@
 <?php 
 
 include 'config.php';
-session_start(); 
+session_start(); //No longer used
 
+//Gets repair id sent in url.
 if(isset($_GET['id'])){
   $repairID = $_GET['id'];
 } else {
@@ -40,6 +41,7 @@ if(isset($_GET['id'])){
         <form action = "AddParts.php" method = "post">
         
         <input type="hidden" name="repID" value="<?php echo $repairID; ?>" >
+        <!--hidden form to pass repairID to query-->
           
           <div class="form-group">
             <div class="form-row">
@@ -47,6 +49,7 @@ if(isset($_GET['id'])){
                 Part: 
                 <select name="prodID" class="form-control"> 
                   <?php $dropdown = true; include 'ProdList.php'; ?>
+                  <!--Calls product dropdown-->
                 </select>
               </div>
               <div class="col-md-4">
@@ -75,6 +78,7 @@ if(isset($_GET['id'])){
                               </thead>
                               <tbody>
                                 <?php $purchase = false; include 'PartList.php'; ?>
+                                <!--Calls repair part list-->
                               </tbody>
                             </table>
                              

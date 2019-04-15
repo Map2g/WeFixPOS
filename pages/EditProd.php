@@ -5,11 +5,14 @@
 
 include 'config.php';
 
+//Get ID of product to edit from URL sent from ProdList
 if(isset($_GET['id'])){
   $productID = $_GET['id'];
 } else {
   echo "Could not get ID";
 }
+
+//===========Get product details to fill in form with current values======================
 
 $sql = "SELECT * FROM PRODUCT WHERE PROD_ID = '" . $productID . "'";
 $prodDetails = mysqli_query($conn, $sql);
@@ -18,11 +21,6 @@ if ($prodDetails == false ) {
   printf("Query error: %s\n%s", mysqli_error($conn), $sql);
 }
 
-// if (mysqli_num_rows($empDetails) == 1){
-//     printf("Yay!");
-// } else {
-//     printf("%s\n%s", $sql, $_GET["id"]);
-// }
 
 $row = mysqli_fetch_assoc($prodDetails);
 
@@ -30,6 +28,8 @@ $name = mysql_real_escape_string(htmlspecialchars($row["PROD_NAME"]));
 $price = $row["PROD_PRICE"];
 $retail = $row["PROD_RETAIL"];
 $stock = $row["PROD_STOCK"];
+
+//========================================================================================
 
 ?>
 
@@ -98,11 +98,6 @@ $stock = $row["PROD_STOCK"];
           <input type = "submit" value = "Submit">
         </form>
         
-        <!--<form action = "DeleteProd.php" method = "post">-->
-        <!--    <input type="hidden" name="id" value="<?php echo $productID; ?>">-->
-        <!--    <br>-->
-        <!--    <center><input type = "submit" value = "Delete"></center>-->
-        <!--</form>-->
       </div>
     </div>
   </div>

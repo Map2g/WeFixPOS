@@ -1,4 +1,7 @@
-<?php include ('top.php'); session_start();?>
+<?php 
+session_start(); //no longer used
+include ('top.php'); //navbar
+?>
 
   <!-- Page Content -->
   <div class="container">
@@ -44,14 +47,6 @@
 
   </div>
   <!-- /.container -->
-
-  <!-- Footer -->
-  <!--<footer class="py-5 bg-dark fixed-bottom">-->
-  <!--  <div class="container">-->
-  <!--    <p class="m-0 text-center text-white">Copyright &copy; WeFix 2019</p>-->
-  <!--  </div>-->
-    <!-- /.container -->
-  <!--</footer>-->
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

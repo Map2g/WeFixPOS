@@ -1,3 +1,5 @@
+<!--Navbar included on every non-form page-->
+
 <!DOCTYPE html>
 <html lang="en">
 

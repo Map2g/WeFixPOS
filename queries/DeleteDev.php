@@ -2,7 +2,8 @@
 include 'config.php';
 
 //*******************************************************************************************************************
-//File to be removed.
+//This is a dropped function of this project. Devices should not be deleted because they are tied to repairs. You do 
+// not want to lose a record of a repair even if you want to delete a device.
 
 $devID = $_POST['id'];
 
@@ -21,6 +22,4 @@ if(mysqli_query($conn, $sql)){
     echo "Error" . $sql . "<br>" . mysqli_error($conn);
 }
 
-
-//We'll probably have to add an error message or some way to handle trying to delete an employee or customer that is attached to purchases/repairs.
 ?>

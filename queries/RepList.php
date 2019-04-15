@@ -1,4 +1,10 @@
 <?php
+//=========================================================================================
+//      Generates list of repair details
+//
+//      Called from CusSummary.php, Repairs.php
+//      Calls DeleteRep.php
+//=========================================================================================
 
 include 'config.php';
 

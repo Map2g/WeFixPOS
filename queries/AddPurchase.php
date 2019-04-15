@@ -1,4 +1,10 @@
 <?php
+//=========================================================================================
+//      Adds a purchase record to the PURCHASE table
+//
+//      Called from AddPurchaseForm.php
+//      Calls nothing
+//=========================================================================================
 
 include 'config.php'; // config.php connects to the database
 session_start(); // starts the session for cookies

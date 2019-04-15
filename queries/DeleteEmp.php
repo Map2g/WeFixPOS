@@ -2,7 +2,7 @@
 include 'config.php';
 
 //*******************************************************************************************************************
-//File to be removed
+//This is a dropped function of this project. Employees should not be deleted because they are tied to repairs and purchases.
 
 $empID = $_POST['id'];
 
@@ -14,6 +14,4 @@ if(mysqli_query($conn, $sql)){
     echo "Error" . $sql . "<br>" . mysqli_error($conn);
 }
 
-
-//We'll probably have to add an error message or some way to handle trying to delete an employee or customer that is attached to purchases/repairs.
 ?>

@@ -1,6 +1,12 @@
 <?php
+//=========================================================================================
+//      Generates a list of device details for a specific customer
+//
+//      Called from AddRepairForm.php, AddRepairFormGenerl.php, CusSummary.php
+//      Calls EditDev.php
+//=========================================================================================
 
-include 'config.php';
+include 'config.php';       //establish database connection
 
 $deviceSql = "SELECT 
                     DEV_ID,
@@ -16,9 +22,11 @@ if ($deviceDetails == false){
   printf("Connection error: %s\nQuery error: %s\n", mysqli_error($conn), $deviceSql); 
 }
 
-//displaying device details
+//===========================================================================================================================================
+
 $CountD = 1;
 
+//dropdown = true when this is called from generalRepair form
 if ($dropdown != true){
     if (mysqli_num_rows($deviceDetails) > 0) {
         $rowD = mysqli_fetch_assoc($deviceDetails);
@@ -45,6 +53,7 @@ if ($dropdown != true){
 } else {
     if (mysqli_num_rows($deviceDetails) > 0) {
         $rowD = mysqli_fetch_assoc($deviceDetails);
+        //value is DEV_ID so when this option is selected, the corresponding form is sent the ID.
         while($rowD){
             echo '<option value="'. $rowD["DEV_ID"] .'">' . $rowD["DEV_MODEL"] . " " . substr($rowD["DEV_PHONE"], 0, 3) .'-'. substr($rowD["DEV_PHONE"], 3, 3) .'-'. substr($rowD["DEV_PHONE"], 6, 4) . '</option>';
             $rowD = mysqli_fetch_assoc($deviceDetails);

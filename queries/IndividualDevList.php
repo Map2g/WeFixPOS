@@ -2,7 +2,7 @@
 //=========================================================================================
 //      Generates a list of device details for a specific customer
 //
-//      Called from AddRepairForm.php, AddRepairFormGenerl.php, CusSummary.php
+//      Called from AddRepairForm.php, AddRepairFormGeneral.php, CusSummary.php
 //      Calls EditDev.php
 //=========================================================================================
 

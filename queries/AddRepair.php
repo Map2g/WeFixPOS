@@ -9,7 +9,7 @@
 
 include 'config.php'; // config.php connects to the database
 
-//Get customer ID to send in form url
+//Get customer ID to send in form url or dropdown
 $customerID = $_POST['cusID'];
 
 //*************************************************************************************************************************************

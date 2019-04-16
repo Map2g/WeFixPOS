@@ -6,9 +6,6 @@ include 'config.php';
 //      Called from EditDev.php
 //=========================================================================================
 
-
-//*******************************************************************************************************************
-
 $devID = $_POST['id'];
 //determines which device record will be updated. Sent to EditDev.php in url, sent here as hidden form
 $cusID = $_POST['cusID'];

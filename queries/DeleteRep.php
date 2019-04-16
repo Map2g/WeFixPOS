@@ -6,6 +6,7 @@
 //       repair will not be returned when a repair is voided.
 //
 //      Called from RepList.php with REP_ID sent through url
+//      Calls nothing
 //=========================================================================================
 
 include 'config.php';   
